@@ -14,11 +14,21 @@ public class CardScript : MonoBehaviour {
 
 	bool createdSubCard;
 
+	string[] nameDictionnary = {
+		"Alexandre", "Alex", "Andy", "Eva", "Francis", "Andréa", "Marion", "Guilhem",
+		"Romain", "Charly", "Nicolas", "Camille", "Gabriel", "Colette", "Guy", "Jean",
+		"Claude", "Delphine", "Laura", "Laure", "Eliott", "Melba", "Aïka", "Lara", "Yvette"
+	};
+
 	// CALLED WHEN CARD IS SPAWNED
 	void Start() {
 		touchScript = GameObject.Find("Camera").GetComponent<TouchScript>();
 		newPosition = transform.position;
 		createdSubCard = false;
+
+		// Random name attribution
+		int randInt = Random.Range(0, nameDictionnary.Length);
+		GetComponentInChildren<TextMesh>().text = nameDictionnary[randInt];
 	}
 
 	// CALLED EVERY TICK
@@ -35,10 +45,10 @@ public class CardScript : MonoBehaviour {
 	// CALLED AT A FIXED TIME (every x second)
 	void FixedUpdate() {
 		if (transform.position.x < -1f && canMove && !touchScript.touching) {
-			newPosition = new Vector3(-10f, 0f, 0f);
+			newPosition = new Vector3(-6f, 0f, 0f);
 			newCardStepForward();
 		} else if (transform.position.x > 1f && canMove && !touchScript.touching) {
-			newPosition = new Vector3(10f, 0f, 0f);
+			newPosition = new Vector3(6f, 0f, 0f);
 			newCardStepForward();
 		} else if (canMove) {
 			newPosition = new Vector3(
@@ -49,7 +59,7 @@ public class CardScript : MonoBehaviour {
 		}
 
 		// Destroy object when reaching border
-		if (transform.position.x < -9 || transform.position.x > 9) {
+		if (transform.position.x < -5f || transform.position.x > 5f) {
 			Destroy(this.gameObject);
 		}
 
