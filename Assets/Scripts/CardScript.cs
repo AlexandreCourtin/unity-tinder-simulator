@@ -8,6 +8,9 @@ public class CardScript : MonoBehaviour {
 	public CardScript subCard;
 	public Vector3 newPosition;
 	public Color[] faceColorDictionnary;
+	public Color[] hatColorDictionnary;
+	public GameObject[] hatObjectDictionnary;
+	public GameObject[] beardObjectDictionnary;
 	public SpriteRenderer faceSprite;
 	public bool canMove;
 	public float speed = 1f;
@@ -17,9 +20,10 @@ public class CardScript : MonoBehaviour {
 	bool createdSubCard;
 
 	string[] nameDictionnary = {
-		"Alexandre", "Alex", "Andy", "Eva", "Francis", "Andréa", "Marion", "Guilhem",
-		"Romain", "Charly", "Nicolas", "Camille", "Gabriel", "Colette", "Guy", "Jean",
-		"Claude", "Delphine", "Laura", "Laure", "Eliott", "Melba", "Aïka", "Lara", "Yvette"
+		"Alex", "Andy", "Eva", "Francis", "Andréa", "Marion", "Guilhem", "Yvette",
+		"Romain", "Charly", "Nicolas", "Camille", "Gabriel", "Guy", "Jean", "Malvic",
+		"Claude", "Delphine", "Laura", "Laure", "Eliott", "Melba", "Aïka", "Lara",
+		"Léa"
 	};
 
 	// CALLED WHEN CARD IS SPAWNED
@@ -35,6 +39,40 @@ public class CardScript : MonoBehaviour {
 		// Random face color
 		int randFaceColor = Random.Range(0, faceColorDictionnary.Length);
 		faceSprite.color = faceColorDictionnary[randFaceColor];
+
+		// Random hat object
+		int randhatObject = Random.Range(0, hatObjectDictionnary.Length);
+		for (int i = 0 ; i < hatObjectDictionnary.Length ; i++) {
+			if (i == randhatObject) {
+				hatObjectDictionnary[i].gameObject.active = true;
+			} else {
+				hatObjectDictionnary[i].gameObject.active = false;
+			}
+		}
+
+		// Random beard object
+		int randbeardObject = Random.Range(0, beardObjectDictionnary.Length);
+		for (int i = 0 ; i < beardObjectDictionnary.Length ; i++) {
+			if (i == randbeardObject) {
+				beardObjectDictionnary[i].gameObject.active = true;
+			} else {
+				beardObjectDictionnary[i].gameObject.active = false;
+			}
+		}
+
+		// Random hat color
+		int randHatColor = Random.Range(0, hatColorDictionnary.Length);
+		SpriteRenderer[] hatRenderers = hatObjectDictionnary[randhatObject].GetComponentsInChildren<SpriteRenderer>();
+		foreach (SpriteRenderer hatRenderer in hatRenderers) {
+			hatRenderer.color = hatColorDictionnary[randHatColor];
+		}
+
+		// Random beard color
+		int randBeardColor = Random.Range(0, hatColorDictionnary.Length);
+		SpriteRenderer[] beardRenderers = beardObjectDictionnary[randbeardObject].GetComponentsInChildren<SpriteRenderer>();
+		foreach (SpriteRenderer beardRenderer in beardRenderers) {
+			beardRenderer.color = hatColorDictionnary[randBeardColor];
+		}
 	}
 
 	// CALLED EVERY TICK
