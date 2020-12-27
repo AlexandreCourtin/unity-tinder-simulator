@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CardScript : MonoBehaviour {
+	
 	public GameObject cardObject;
 	public TouchScript touchScript;
 	public CardScript subCard;
