@@ -7,6 +7,8 @@ public class CardScript : MonoBehaviour {
 	public TouchScript touchScript;
 	public CardScript subCard;
 	public Vector3 newPosition;
+	public Color[] faceColorDictionnary;
+	public SpriteRenderer faceSprite;
 	public bool canMove;
 	public float speed = 1f;
 	public float dragPowerX;
@@ -27,8 +29,12 @@ public class CardScript : MonoBehaviour {
 		createdSubCard = false;
 
 		// Random name attribution
-		int randInt = Random.Range(0, nameDictionnary.Length);
-		GetComponentInChildren<TextMesh>().text = nameDictionnary[randInt];
+		int randName = Random.Range(0, nameDictionnary.Length);
+		GetComponentInChildren<TextMesh>().text = nameDictionnary[randName];
+
+		// Random face color
+		int randFaceColor = Random.Range(0, faceColorDictionnary.Length);
+		faceSprite.color = faceColorDictionnary[randFaceColor];
 	}
 
 	// CALLED EVERY TICK
