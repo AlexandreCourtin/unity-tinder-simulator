@@ -89,7 +89,10 @@ public class CardScript : MonoBehaviour {
 
 	// CALLED AT A FIXED TIME (every x second)
 	void FixedUpdate() {
-		if (transform.position.x < -1f && canMove && !touchScript.touching) {
+		// Destroy object when reaching border
+		if (transform.position.x < -5f || transform.position.x > 5f) {
+			Destroy(this.gameObject);
+		} else if (transform.position.x < -1f && canMove && !touchScript.touching) {
 			newPosition = new Vector3(-6f, 0f, 0f);
 			newCardStepForward();
 		} else if (transform.position.x > 1f && canMove && !touchScript.touching) {
@@ -101,11 +104,6 @@ public class CardScript : MonoBehaviour {
 				touchScript.correctedInputPosition.y * dragPowerY,
 				0f
 			);
-		}
-
-		// Destroy object when reaching border
-		if (transform.position.x < -5f || transform.position.x > 5f) {
-			Destroy(this.gameObject);
 		}
 
 		// Always update position and rotation with a Lerp for a smooth effect
