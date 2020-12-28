@@ -17,7 +17,7 @@ MonoBehaviour:
   m_RendererType: 1
   m_RendererData: {fileID: 0}
   m_RendererDataList:
-  - {fileID: 11400000, guid: d33bf786ed0004346bc8456d32c9616c, type: 2}
+  - {fileID: 11400000, guid: 62a67c7e15a094259aed6b852857c4c7, type: 2}
   m_DefaultRendererIndex: 0
   m_RequireDepthTexture: 0
   m_RequireOpaqueTexture: 0
@@ -26,10 +26,10 @@ MonoBehaviour:
   m_SupportsHDR: 0
   m_MSAA: 1
   m_RenderScale: 1
-  m_MainLightRenderingMode: 0
+  m_MainLightRenderingMode: 1
   m_MainLightShadowsSupported: 0
   m_MainLightShadowmapResolution: 2048
-  m_AdditionalLightsRenderingMode: 0
+  m_AdditionalLightsRenderingMode: 1
   m_AdditionalLightsPerObjectLimit: 4
   m_AdditionalLightShadowsSupported: 0
   m_AdditionalLightsShadowmapResolution: 512
@@ -42,7 +42,7 @@ MonoBehaviour:
   m_SoftShadowsSupported: 0
   m_UseSRPBatcher: 1
   m_SupportsDynamicBatching: 0
-  m_MixedLightingSupported: 0
+  m_MixedLightingSupported: 1
   m_DebugLevel: 0
   m_PostProcessingFeatureSet: 0
   m_ColorGradingMode: 0
