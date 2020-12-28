@@ -31,16 +31,13 @@ public class TouchScript : MonoBehaviour {
 		if (touch() && !touching) {
 			touching = true;
 			touched = true;
-		}
-		else if (!touch() && touching) {
+
+			// GET INITAL POSITION WHEN FIRST TOUCHING SCREEN
+			originalInputPosition = inputPosition;
+		} else if (!touch() && touching) {
 			touching = false;
 		}
 		
-		// GET INITAL POSITION WHEN FIRST TOUCHING SCREEN
-		if (touched) {
-			originalInputPosition = inputPosition;
-		}
-
 		// CORRECT POSITION FROM INITAL TOUCH POSITION
 		if (touching) {
 			correctedInputPosition = new Vector2(
@@ -57,11 +54,9 @@ public class TouchScript : MonoBehaviour {
 		if (Input.GetMouseButton(0)) {
 			inputPosition = Input.mousePosition;
 			return true;
-		} else {
-			for (int i = 0; i < Input.touchCount; i++) {
-				inputPosition = Input.GetTouch(0).position;
-				return true;
-			}
+		} else if (Input.touchCount > 0) {
+			inputPosition = Input.GetTouch(0).position;
+			return true;
 		}
 		return false;
 	}

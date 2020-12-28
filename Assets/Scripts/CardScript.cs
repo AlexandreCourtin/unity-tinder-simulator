@@ -46,9 +46,9 @@ public class CardScript : MonoBehaviour {
 		int randhatObject = Random.Range(0, hatObjectDictionnary.Length);
 		for (int i = 0 ; i < hatObjectDictionnary.Length ; i++) {
 			if (i == randhatObject) {
-				hatObjectDictionnary[i].gameObject.active = true;
+				hatObjectDictionnary[i].gameObject.SetActive(true);
 			} else {
-				hatObjectDictionnary[i].gameObject.active = false;
+				hatObjectDictionnary[i].gameObject.SetActive(false);
 			}
 		}
 
@@ -56,9 +56,9 @@ public class CardScript : MonoBehaviour {
 		int randbeardObject = Random.Range(0, beardObjectDictionnary.Length);
 		for (int i = 0 ; i < beardObjectDictionnary.Length ; i++) {
 			if (i == randbeardObject) {
-				beardObjectDictionnary[i].gameObject.active = true;
+				beardObjectDictionnary[i].gameObject.SetActive(true);
 			} else {
-				beardObjectDictionnary[i].gameObject.active = false;
+				beardObjectDictionnary[i].gameObject.SetActive(false);
 			}
 		}
 
@@ -79,6 +79,7 @@ public class CardScript : MonoBehaviour {
 
 	// CALLED EVERY TICK
 	void Update() {
+		// GENERATE SUB CARD IF MAIN CARD IS TOUCHED FOR THE FIRST TIME
 		if (touchScript.touched && !createdSubCard && canMove) {
 			createdSubCard = true;
 			GameObject sub = Instantiate(cardObject, new Vector3(0f, 0f, 5f), Quaternion.identity);
