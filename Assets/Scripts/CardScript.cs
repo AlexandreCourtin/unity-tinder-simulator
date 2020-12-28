@@ -91,7 +91,7 @@ public class CardScript : MonoBehaviour {
 	// CALLED AT A FIXED TIME (every x second)
 	void FixedUpdate() {
 		// DESTROY OBJECT WHEN REACHING BORDER
-		if (transform.position.x < -5f || transform.position.x > 5f) {
+		if ((transform.position.x < -5f || transform.position.x > 5f) && !canMove) {
 			Destroy(this.gameObject);
 		}
 		// SWIPE LEFT
