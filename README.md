@@ -3,6 +3,8 @@ Made with Unity
 
 Generate random faces with random names
 
+You can swipe left or right and it will generate another face
+
 <div class="row">
   <img src="/coolpic1.png" width="200">
   <img src="/coolpic2.png" width="200">
