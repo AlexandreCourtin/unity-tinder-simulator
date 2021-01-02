@@ -4,21 +4,18 @@ using UnityEngine;
 
 public class CardScript : MonoBehaviour {
 	
-	public GameObject cardObject;
 	public TouchScript touchScript;
-	public CardScript subCard;
 	public Vector3 newPosition;
 	public Color[] faceColorDictionnary;
 	public Color[] hatColorDictionnary;
 	public GameObject[] hatObjectDictionnary;
 	public GameObject[] beardObjectDictionnary;
 	public SpriteRenderer faceSprite;
+	public bool createdSubCard;
 	public bool canMove;
 	public float speed = 1f;
 	public float dragPowerX;
 	public float dragPowerY;
-
-	bool createdSubCard;
 
 	// NAMES THAT WILL BE CHOSEN WHEN PICKING RANDOM NAME
 	string[] nameDictionnary = {
@@ -77,18 +74,6 @@ public class CardScript : MonoBehaviour {
 		}
 	}
 
-	// CALLED EVERY TICK
-	void Update() {
-		// GENERATE SUB CARD IF MAIN CARD IS TOUCHED FOR THE FIRST TIME
-		if (touchScript.touched && !createdSubCard && canMove) {
-			createdSubCard = true;
-			GameObject sub = Instantiate(cardObject, new Vector3(0f, 0f, 5f), Quaternion.identity);
-			sub.name = "Card";
-			subCard = sub.GetComponent<CardScript>();
-			subCard.canMove = false;
-		}
-	}
-
 	// CALLED AT A FIXED TIME (every x second)
 	void FixedUpdate() {
 		// DESTROY OBJECT WHEN REACHING BORDER
@@ -98,12 +83,12 @@ public class CardScript : MonoBehaviour {
 		// SWIPE LEFT
 		else if (transform.position.x < -1f && canMove && !touchScript.touching) {
 			newPosition = new Vector3(-6f, 0f, 0f);
-			newCardStepForward();
+			touchScript.newCardStepForward();
 		}
 		// SWIPE RIGHT
 		else if (transform.position.x > 1f && canMove && !touchScript.touching) {
 			newPosition = new Vector3(6f, 0f, 0f);
-			newCardStepForward();
+			touchScript.newCardStepForward();
 		}
 		// UPDATE POSITION WITH TOUCHSCRIPT
 		else if (canMove) {
@@ -117,13 +102,5 @@ public class CardScript : MonoBehaviour {
 		// ALWAYS UPDATE POSITION AND ROTATION WITH A LERP FOR A SMOOTH EFFECT
 		transform.position = Vector3.Lerp(transform.position, newPosition, speed);
 		transform.rotation = Quaternion.Euler(0f, 0f, -transform.position.x);
-	}
-
-	// CALLED WHEN DISLIKED OR LIKED
-	// DISABLE MOVEMENT AND CALL SUB CARD TO BE THE MAIN CARD
-	private void newCardStepForward() {
-		canMove = false;
-		subCard.canMove = true;
-		subCard.newPosition = Vector3.zero;
 	}
 }

@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "RZ8N915VP1F",
         "name": "com.DefaultCompany.com.unity.template.mobile2D",
-        "processId": 19374,
+        "processId": 3703,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -24,6 +24,12 @@
             "deviceId": "RZ8N915VP1F",
             "name": "com.DefaultCompany.com.unity.template.mobile2D",
             "processId": 19374,
+            "exited": false
+        },
+        {
+            "deviceId": "RZ8N915VP1F",
+            "name": "com.DefaultCompany.com.unity.template.mobile2D",
+            "processId": 3703,
             "exited": false
         }
     ],
@@ -74,7 +80,7 @@
             true,
             true
         ],
-        "MemoryGroup": 1,
+        "MemoryGroup": 2,
         "Behavior": 1
     },
     "m_Filter": "",
